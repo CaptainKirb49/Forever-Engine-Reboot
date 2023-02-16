@@ -92,7 +92,7 @@ class PlayState extends MusicBeatState
 	private var curSong:String = "";
 	private var gfSpeed:Int = 1;
 
-	public static var health:Float = 1; // mario
+	public static var health:Float = 1; // this is weird, every other engine uses 2
 	public static var combo:Int = 0;
 
 	public static var misses:Int = 0;
@@ -115,7 +115,7 @@ class PlayState extends MusicBeatState
 	public static var dialogueHUD:FlxCamera;
 
 	public var camDisplaceX:Float = 0;
-	public var camDisplaceY:Float = 0; // might not use depending on result
+	public var camDisplaceY:Float = 0; // might not use depending on result [bruh]
 	public static var cameraSpeed:Float = 1;
 
 	public static var defaultCamZoom:Float = 1.05;
@@ -164,6 +164,7 @@ class PlayState extends MusicBeatState
 		// sets up the combo object array
 		lastCombo = [];
 
+		//Adds Default Values for CamZoom, CamSpeed, and ForceZoom
 		defaultCamZoom = 1.05;
 		cameraSpeed = 1;
 		forceZoom = [0, 0, 0, 0];
@@ -190,7 +191,7 @@ class PlayState extends MusicBeatState
 		allUIs.push(camHUD);
 		FlxCamera.defaultCameras = [camGame];
 
-		// default song
+		// default song, used if there is no song specified
 		if (SONG == null)
 			SONG = Song.loadFromJson('test', 'test');
 
@@ -199,7 +200,7 @@ class PlayState extends MusicBeatState
 
 		/// here we determine the chart type!
 		// determine the chart type here
-		determinedChartType = "FNF";
+		determinedChartType = "FNF"; //What is the point of this, like seriously?? Did they want to add Arrow Vortex chart support? -Kirby
 
 		//
 
@@ -237,12 +238,11 @@ class PlayState extends MusicBeatState
 		dadOpponent = new Character().setCharacter(50, 850, SONG.player2);
 		boyfriend = new Boyfriend();
 		boyfriend.setCharacter(750, 850, SONG.player1);
-		// if you want to change characters later use setCharacter() instead of new or it will break
+		// if you want to change characters later use setCharacter() instead of new or it will break, this is important -Kirb
 
 		var camPos:FlxPoint = new FlxPoint(gf.getMidpoint().x - 100, boyfriend.getMidpoint().y - 100);
 
 		stageBuild.repositionPlayers(curStage, boyfriend, dadOpponent, gf);
-		stageBuild.dadPosition(curStage, boyfriend, dadOpponent, gf, camPos);
 
 		changeableSkin = Init.trueSettings.get("UI Skin");
 		if ((curStage.startsWith("school")) && ((determinedChartType == "FNF")))
@@ -253,7 +253,7 @@ class PlayState extends MusicBeatState
 
 		// add limo cus dumb layering
 		if (curStage == 'highway')
-			add(stageBuild.limo);
+			add(stageBuild.limo); //WHY IS THIS HERE OF ALL PLACES?? -Kirb
 
 		add(dadOpponent);
 		add(boyfriend);
@@ -268,8 +268,8 @@ class PlayState extends MusicBeatState
 		// set song position before beginning
 		Conductor.songPosition = -(Conductor.crochet * 4);
 
-		// EVERYTHING SHOULD GO UNDER THIS, IF YOU PLAN ON SPAWNING SOMETHING LATER ADD IT TO STAGEBUILD OR FOREGROUND
-		// darken everything but the arrows and ui via a flxsprite
+		// EVERYTHING SHOULD GO UNDER THIS, IF YOU PLAN ON SPAWNING SOMETHING LATER ADD IT TO STAGEBUILD OR FOREGROUND, why tho -Kirb
+		// darken everything but the arrows and ui via a flxsprite (CHANGES STAGE "OPACITY")
 		var darknessBG:FlxSprite = new FlxSprite(FlxG.width * -0.5, FlxG.height * -0.5).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 		darknessBG.alpha = (100 - Init.trueSettings.get('Stage Opacity')) / 100;
 		darknessBG.scrollFactor.set(0, 0);

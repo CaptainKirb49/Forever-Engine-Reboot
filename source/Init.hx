@@ -215,7 +215,6 @@ class Init extends FlxState
 
 	override public function create():Void
 	{
-		trace("Game Should be running");
 		FlxG.save.bind('foreverengine-options');
 		Highscore.load();
 

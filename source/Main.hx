@@ -173,7 +173,6 @@ class Main extends Sprite
 		FlxTransitionableState.skipNextTransIn = true;
 		
 		// here we set up the base game
-		trace("Game Created");
 		var gameCreate:FlxGame;
 		gameCreate = new FlxGame(gameWidth, gameHeight, mainClassState, #if (flixel < "5.0.0") zoom, #end framerate, framerate, skipSplash);
 		addChild(gameCreate); // and create it afterwards
@@ -209,7 +208,6 @@ class Main extends Sprite
 
 	public static function switchState(curState:FlxState, target:FlxState)
 	{
-		trace("Supposed to switch state");
 		// Custom made Trans in
 		mainClassState = Type.getClass(target);
 		if (!FlxTransitionableState.skipNextTransIn)
