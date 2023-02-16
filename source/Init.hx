@@ -40,6 +40,7 @@ class Init extends FlxState
 		3 - offsets, this is unused but it'd bug me if it were set to 0
 		might redo offset code since I didnt make it and it bugs me that it's hardcoded the the last part of the controls menu
 	 */
+
 	public static var FORCED = 'forced';
 	public static var NOT_FORCED = 'not forced';
 
@@ -214,6 +215,7 @@ class Init extends FlxState
 
 	override public function create():Void
 	{
+		trace("Game Should be running");
 		FlxG.save.bind('foreverengine-options');
 		Highscore.load();
 
@@ -238,10 +240,11 @@ class Init extends FlxState
 
 	private function gotoTitleScreen()
 	{	
-		if (trueSettings.get("Custom Titlescreen"))
-			Main.switchState(this, new CustomTitlescreen());
-		else
-			Main.switchState(this, new TitleState());
+		trace("GotoTitleScreen");
+		// if (trueSettings.get("Custom Titlescreen"))
+		// 	Main.switchState(this, new CustomTitlescreen());
+		// else
+		Main.switchState(this, new TitleState());
 	}
 
 	public static function loadSettings():Void

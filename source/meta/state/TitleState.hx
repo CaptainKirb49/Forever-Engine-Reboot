@@ -52,6 +52,7 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		trace("Create Called!");
 		controls.setKeyboardScheme(None, false);
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 		super.create();
@@ -66,6 +67,7 @@ class TitleState extends MusicBeatState
 
 	function startIntro()
 	{
+		trace("startIntro called");
 		if (!initialized)
 		{
 			///*
